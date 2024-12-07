@@ -1,5 +1,7 @@
 import { response } from "express"
 import user from "../Models/user.js"
+import bcrypt from "bcrypt"
+
 
 const add = async (req, res) => {
     let newuser = new user(req.body)
@@ -51,6 +53,21 @@ const login = async (req, res) => {
         return res.status(500).json({ message: "An error occurred during login" });
     }
 };
+const register= async(req,res)=>{
+     try{
+             const hashedPassword=await bcrypt.hash(req.body.password,10)
+             console.log(hashedPassword);
+             const userData={...req.body,password:hashedPassword}
+             
+             const newuser=await new user(userData)
+             const saveduser=await newuser.save()
+            return res.json(saveduser)
+             
+     }
+     catch(e){
+        console.error(e);
+       return res.status(500).json({message:"error occured during register"})
+     }
+}
 
-
-export { add, view, update, deletedata, login }
+export { add, view, update, deletedata, login ,register}
