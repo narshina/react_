@@ -3,6 +3,7 @@ import { connectDB } from "./config/db.js"
 import userRouter from "./routes/userRouter.js";
 import productRouter from "./routes/productRouter.js";
 import cors from 'cors'
+import jwt from "jsonwebtoken"
 
 
 const app = express()

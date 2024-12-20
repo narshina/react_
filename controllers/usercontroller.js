@@ -1,6 +1,7 @@
 import { response } from "express"
 import user from "../Models/user.js"
 import bcrypt from "bcrypt"
+import jwt from 'jsonwebtoken';
 
 
 const add = async (req, res) => {
@@ -70,4 +71,44 @@ const register= async(req,res)=>{
      }
 }
 
-export { add, view, update, deletedata, login ,register}
+const viewprofile=async(req,res)=>{
+    let id=req.params.id
+    let response=await user.findById(id)
+    res.json(response)
+    console.log(response);  
+}
+
+const logins=async(req,res)=>{
+    try{
+        const {email,password}=req.body
+        let response=await user.findOne({email:email})
+        if(!response){
+            return res.status(500).json("user not found")
+        }
+        console.log(response);
+        let matchedpassword=await bcrypt.compare(password,response.password)
+        console.log(matchedpassword);
+        if(!matchedpassword){
+            return res.status(401).json("invalid username");
+        }
+        const token = jwt.sign(
+            {
+                userId: response._id,
+                email: response.email,
+            },
+            "abc",
+            { expiresIn: "1h" }
+        );
+
+        return res.status(201).json({ message: "Login successful", token });
+        
+    }
+    catch(e){
+        res.status(500).json(e.message)
+    }
+    
+}
+
+
+
+export { add, view, update, deletedata, login ,register ,viewprofile ,logins}
