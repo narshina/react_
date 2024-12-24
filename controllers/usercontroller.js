@@ -56,6 +56,12 @@ const login = async (req, res) => {
 };
 const register= async(req,res)=>{
      try{
+        const existingmail = await user.findOne({ email:req.body.email });
+
+        if(existingmail){
+            return res.status(400).json('mail already exist');        
+
+        }
              const hashedPassword=await bcrypt.hash(req.body.password,10)
              console.log(hashedPassword);
              const userData={...req.body,password:hashedPassword}
@@ -101,6 +107,7 @@ const logins=async(req,res)=>{
         );
 
         return res.status(201).json({ message: "Login successful", token });
+        
         
     }
     catch(e){
