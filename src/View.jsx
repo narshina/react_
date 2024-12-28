@@ -5,6 +5,8 @@ import { Link, useParams } from 'react-router-dom'
 export const View = () => {
 
     const[data,setdata]=useState([])
+    const[search,setsearch]=useState('')
+    const[show,setshow]=useState(false)
     useEffect(()=>{
         const fetchData=async()=>{
             try{
@@ -18,6 +20,17 @@ export const View = () => {
         }
         fetchData()
      },[])
+
+
+     const filteredata=data.filter(item=>
+      item.name.toLowerCase().includes(search.toLocaleLowerCase())
+ );
+
+ const handlesearchchange=(event)=>{
+setsearch(event.target.value)
+ }
+
+
 let handledelete=(id)=>{
   const response=axios.delete(`http://localhost:8000/api/user/deletedata/${id}`)
   console.log(response);
@@ -28,7 +41,12 @@ let handledelete=(id)=>{
   
   return (
     <div>
-        {data.map((item)=>(
+
+      <div>
+        <input type="text" value={search} onChange={handlesearchchange} />
+      
+      </div>
+        {filteredata.map((item)=>(
            <form ><div key={item._id}>
 
                 <input name='name' type='text' placeholder={item.name}></input>

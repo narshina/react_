@@ -1,3 +1,4 @@
+// import axios from 'axios';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -14,14 +15,18 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      let response = await axios.post('http://localhost:8000/api/user/login', data);
-      console.log(response.data);
+      const response = await axios.post('http://localhost:8000/api/user/logins', data, {
+        headers: {
+          'Content-Type': 'application/json', 
+        }
+      });
+            console.log( "--------",response);
 
       if (response.data) {
         localStorage.setItem('id', response.data._id); 
-        localStorage.setItem('email', response.data.email); 
+        localStorage.setItem('token', response.data.token); 
         alert('Login Successful');
-        navigate('/form')
+        navigate('/vprofile') 
       } else {
         alert('Invalid Response from Server');
       }

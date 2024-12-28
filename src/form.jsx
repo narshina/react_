@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "flowbite";
 import axios from 'axios';
-
+import toast, { Toaster } from 'react-hot-toast';
 export const Form = () => {
 
 
@@ -12,15 +11,21 @@ export const Form = () => {
     const handlechange=(event)=>{
         setData({...data,[event.target.name]:event.target.value})
     }
-    const handlesubmit= async (event)=>{
-        event.preventDefault('')
-        let response=await axios.post('http://localhost:8000/api/user/add',data)
-        setData(data)
-        console.log(data);
-        console.log(response);
-        
-    }
-
+    const handlesubmit = async (event) => {
+        try {
+          event.preventDefault();
+          let response = await axios.post('http://localhost:8000/api/user/register', data);
+          setData(data);
+          console.log(data);
+          console.log(response);
+          toast.success("Registration successful");
+        } catch (error) {
+          console.error("Error:", error);
+          toast.error(error.response.data.message || error.message || "An error occurred");
+        }
+      };
+      
+const notify = () => toast('Here is your toasthhh.');
     
   
         
@@ -41,7 +46,7 @@ export const Form = () => {
 <button type='submit'>submit</button>
 </form>
 
-
+<button onClick={notify}>click</button>
    </div>
   )
 }

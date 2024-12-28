@@ -32,11 +32,14 @@ import { Provider } from 'react-redux';
 import store from './redux/counterstore';
 import { Addimage } from './Addimage';
 import Vimage from './Vimage';
+import { Viewprofile } from './Viewprofile';
+import Parent1 from './parent1';
+import { Toaster } from 'react-hot-toast';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  
+  <>
   
    <BrowserRouter>
    <Routes>
@@ -58,12 +61,18 @@ root.render(
     <Route path='/log' element={<Login/>}/>
     <Route path='/im' element={<Addimage/>}/>
     <Route path='/vm' element={<Vimage/>}/>
-    
+    <Route path='/vprofile' element={<Viewprofile/>}/>
+    <Route path='/p' element={<Parent1/>}/>
 
     <Route path='*' element={<div>route note found</div>}/>
 
     </Routes>
     </BrowserRouter>
+    <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
+    </>
 
 // {/* <Provider store={store}>
 // <Count/>

@@ -9,7 +9,7 @@ export const Viewdetail = () => {
     useEffect(()=>{
         const fetchData=async()=>{
             try{
-                const response=await axios.get('http://localhost:8000/api/user/view')
+                const response=await axios.get(`http://localhost:8000/api/user/viewprofile/${id}`)
                 setdata(response.data)
                 console.log(response);
             }
@@ -34,15 +34,15 @@ const handlesubmit=async(event)=>{
   return (
     <div>
          <div>
-        {data.map((item)=>(
-           <form onSubmit={handlesubmit}><div key={item._id}>
+       
+           <form onSubmit={handlesubmit}><div key={data._id}>
 
-                <input name='name' type='text' onChange={handlechange} placeholder={item.name}></input>
-                <input name='age' type='text' onChange={handlechange} placeholder={item.age}></input>
-                <input name='email' type='text' onChange={handlechange} placeholder={item.email}></input>
-                <input name='password' type='text' onChange={handlechange} placeholder={item.password}></input> <button type='submit'>submit</button>
+                <input name='name' type='text' onChange={handlechange} placeholder={data.name}></input>
+                <input name='age' type='text' onChange={handlechange} placeholder={data.age}></input>
+                <input name='email' type='text' onChange={handlechange} placeholder={data.email}></input>
+                <input name='password' type='text' onChange={handlechange} placeholder={data.password}></input> <button type='submit'>submit</button>
                 </div></form> 
-        ))}
+   
     </div>
     </div>
   )
