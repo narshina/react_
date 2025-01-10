@@ -3,6 +3,8 @@ import user from "../Models/user.js"
 import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken';
 import verifyToken from "../Middlewares/auth.js";
+import product from "../Models/product.js";
+import resort from "../Models/resort.js";
 
 
 const add = async (req, res) => {
@@ -133,29 +135,23 @@ const logins=async(req,res)=>{
     }   
 }
 
-
-const tokenverify = async (req, res) => {
-    try {
-        const id = req.params.id;
-
-        if (!id) {
-            return res.status(400).json({ error: "Missing id parameter" });
+const addresort=async (req,res)=>{
+    try{
+        console.log(req.file)
+        let imagepath=req.file.filename
+        const newProduct = new resort({...req.body,image:imagepath})
+        const savedProduct = await newProduct.save();
+        res.json(savedProduct)
         }
-
-        console.log("ID:", id);
-
-        const response = await user.findById(id);
-        if (!response) {
-            return res.status(404).json({ error: "User not found" });
+        catch(e){
+            res.json(e.message)
         }
-
-        res.json(response);
-    } catch (e) {
-        console.error(e.message);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};
+}
+const vresort = async (req, res) => {
+    let response = await resort.find()
+    res.json(response)
+}
 
 
 
-export { add, view, update, deletedata, login ,register ,viewprofile ,logins,tokenverify}
+export { add, view, update, deletedata, login ,register ,viewprofile ,logins ,addresort ,vresort}

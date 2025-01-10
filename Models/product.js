@@ -11,5 +11,6 @@ let productschema=new mongoose.Schema({
   }
 })
 
+
 const product=mongoose.model("product",productschema)
 export default product

@@ -1,6 +1,9 @@
 import express from 'express'
-import { add, deletedata, login, logins, register, tokenverify, update, view, viewprofile } from '../controllers/usercontroller.js'
+import { add, addresort, deletedata, login, logins, register, update, view, viewprofile, vresort } from '../controllers/usercontroller.js'
 import verifyToken from '../Middlewares/auth.js'
+import { upload } from "../multer.js";
+import { addVideo, getVideos } from '../controllers/productcontroller.js';
+
 
 const userRouter=express.Router()
 
@@ -13,8 +16,9 @@ userRouter.post("/login",login)
 userRouter.post('/register',register)
 userRouter.get('/viewprofile/:id', verifyToken,viewprofile)
 userRouter.post('/logins',logins)
-userRouter.get('/tokenverify/:id', verifyToken, tokenverify)  
-
-
+userRouter.post('/addresort',upload.single("image"),verifyToken, addresort)
+userRouter.post('/addvideo', upload.single('video'), addVideo);
+userRouter.get('/viewresort',verifyToken,vresort)
+userRouter.get('/vi',getVideos)    
 
 export default userRouter

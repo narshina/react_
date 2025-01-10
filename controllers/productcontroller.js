@@ -1,4 +1,5 @@
 import product from "../Models/product.js";
+import Video from "../Models/video.js";
 
 
 const addimage=async (req,res)=>{
@@ -21,4 +22,27 @@ const viewimage= async(req,res)=>{
     
 
 }
-export{addimage ,viewimage}
+
+const addVideo = async (req, res) => {
+  try {
+      const { title, description } = req.body;
+      const videoPath = req.file.path;
+      const newVideo = new Video({ title, description, videoPath });
+      await newVideo.save();
+      res.status(201).json(newVideo);
+  } catch (err) {
+      res.status(500).json({ error: err.message });
+  }
+};
+
+const getVideos = async (req, res) => {
+  try {
+      const videos = await Video.find();
+      res.json(videos);
+  } catch (err) {
+      res.status(500).json({ error: err.message });
+  }
+};
+
+
+export{addimage ,viewimage ,addVideo ,getVideos}
