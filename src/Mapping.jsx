@@ -26,6 +26,7 @@ console.log(data);
    
 <div>
  <h2>{count}</h2>
+ <h1 className="barrio-regular">Hello, React!</h1>
   <button onClick={incrememt}>incrememt</button>
   <button onClick={decrememt}>decrememt</button>
  <button onClick={adddata}>add</button>

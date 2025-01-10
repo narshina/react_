@@ -1,6 +1,7 @@
 // import axios from 'axios';
 import axios from 'axios';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -25,7 +26,7 @@ const Login = () => {
       if (response.data) {
         localStorage.setItem('id', response.data._id); 
         localStorage.setItem('token', response.data.token); 
-        alert('Login Successful');
+        toast.success(response.data.message);
         navigate('/vprofile') 
       } else {
         alert('Invalid Response from Server');

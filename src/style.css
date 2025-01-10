@@ -31,3 +31,8 @@
     background-color: yellow;
     color: black;
   }
+  @import url('https://fonts.googleapis.com/css2?family=Barrio&display=swap');
+
+.barrio-regular {
+  font-family: "Barrio", serif;
+}

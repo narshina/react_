@@ -35,6 +35,10 @@ import Vimage from './Vimage';
 import { Viewprofile } from './Viewprofile';
 import Parent1 from './parent1';
 import { Toaster } from 'react-hot-toast';
+import Addresort from './user/Addresort';
+import Vresort from './user/Vresort';
+import { AddVideo } from './video';
+import Vvideo from './Vvideo';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -63,6 +67,12 @@ root.render(
     <Route path='/vm' element={<Vimage/>}/>
     <Route path='/vprofile' element={<Viewprofile/>}/>
     <Route path='/p' element={<Parent1/>}/>
+    <Route path='/addresort' element={<Addresort/>}/>
+    <Route path='/vresort' element={<Vresort/>}/>
+    <Route path='/addvideo' element={<AddVideo/>}/>
+    <Route path='/vvideo' element={<Vvideo/>}/>
+
+
 
     <Route path='*' element={<div>route note found</div>}/>
 

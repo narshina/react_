@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Viewprofile = () => {
     const id = localStorage.getItem('id');
@@ -40,6 +40,8 @@ export const Viewprofile = () => {
             <h2>{data.email}</h2>
             
             <button onClick={logout}>Logout</button>
+          <Link to='/addresort'> <button>Add</button></Link> 
+            <Link to='/vresort'> <button>View</button></Link>
         </div>
     );
 };
