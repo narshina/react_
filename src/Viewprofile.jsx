@@ -13,7 +13,7 @@ export const Viewprofile = () => {
             try {
                 const response = await axios.get(`http://localhost:8000/api/user/viewprofile/${id}`, {
                     headers: {
-                        Authorization: `Bearer ${token}`, // Send token in Bearer format
+                        Authorization: `Bearer ${token}`, 
                     },
                 });
                 setdata(response.data);

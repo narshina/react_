@@ -39,6 +39,7 @@ import Addresort from './user/Addresort';
 import Vresort from './user/Vresort';
 import { AddVideo } from './video';
 import Vvideo from './Vvideo';
+import Chat from './chat/Msg';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -71,6 +72,8 @@ root.render(
     <Route path='/vresort' element={<Vresort/>}/>
     <Route path='/addvideo' element={<AddVideo/>}/>
     <Route path='/vvideo' element={<Vvideo/>}/>
+    <Route path='/chat' element={<Chat/>}/>
+
 
 
 
