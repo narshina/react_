@@ -1,0 +1,9 @@
+{
+    "chartData": [
+      { "category": "Electronics", "value": 120 },
+      { "category": "Clothing", "value": 80 },
+      { "category": "Groceries", "value": 150 },
+      { "category": "Books", "value": 60 },
+      { "category": "Furniture", "value": 100 }
+    ]
+  }

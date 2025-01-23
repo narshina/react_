@@ -40,6 +40,10 @@ import Vresort from './user/Vresort';
 import { AddVideo } from './video';
 import Vvideo from './Vvideo';
 import Chat from './chat/Msg';
+import ChartComponent from './graph/Graph';
+import ChartComponents from './graph/Pie';
+import PieChart from './graph/Pie';
+import Sidebar from './Sidebar';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -73,6 +77,10 @@ root.render(
     <Route path='/addvideo' element={<AddVideo/>}/>
     <Route path='/vvideo' element={<Vvideo/>}/>
     <Route path='/chat' element={<Chat/>}/>
+    <Route path='/graph' element={<ChartComponent/>}/>
+    <Route path='/pi' element={<PieChart/>}/>
+    <Route path='/side' element={<Sidebar/>}/>
+
 
 
 
